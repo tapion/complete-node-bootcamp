@@ -1,0 +1,136 @@
+{
+  "id": null,
+  "name": "Formulario 1",
+  "description": "Descripcion formulario uno",
+  "state": null,
+  "elements": [
+    {
+      "id": 1595620240513,
+      "name": "Label",      
+      "text": "Label", 
+      "description": "Agregar un titulo",
+      "type": 0,
+      "icon": "fa-font",
+      "isRequired": null,
+      "idTable": null,
+      "nameSource": null,
+      "source": [],
+      "conditions": []
+    },
+    {
+      "id": 1595620243425,
+      "name": "Radio",
+      "title": "Radio Group",
+      "description": "Agregar una lista de opciones con selección unica",
+      "type": 2,
+      "icon": "fa-check-circle",
+      "isRequired": true,
+      "idTable": "1",
+      "nameSource": null,
+      "source": [
+        {
+          "id": 1,
+          "name": "Opcion 1 Tabla 1",
+          "value": "1",
+          "state": null
+        },
+        {
+          "id": 2,
+          "name": "Opcion 2 Tabla 1",
+          "value": "2",
+          "state": null
+        },
+        {
+          "id": 3,
+          "name": "Opcion 3 Tabla 1",
+          "value": "3",
+          "state": null
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "id": 1595620245328,
+      "name": "Combobox",
+      "title": "Combobox",
+      "description": "Agregar un campo de lista desplegable",
+      "type": 5,
+      "icon": "fa-chevron-down",
+      "isRequired": null,
+      "idTable": null,
+      "nameSource": "Tabla Genero",
+      "source": [
+        {
+          "id": 1,
+          "name": "Masculino",
+          "value": "M"
+        },
+        {
+          "id": 2,
+          "name": "Femenini",
+          "value": "F"
+        }
+      ],
+      "conditions": []
+    }
+  ]
+}
+
+{
+    "sections": [
+        {
+            "id": 9,
+            "name": "Verduras"
+        },
+        {
+            "id": 10,
+            "name": "Frutas"
+        }
+    ],
+    "elements": [
+        {
+        "id": 1595620240513,
+        "section": 10,      
+        "text": "Label", 
+        "description": "Agregar un titulo",
+        "type": 0,
+        "icon": "fa-font",
+        "isRequired": null,
+        "idTable": null,
+        "nameSource": null,
+        "source": [],
+        "conditions": []
+        }
+    ]
+}
+
+{
+    "elements": [
+        {
+        "id": 1595620240513,
+        "section": "Verduras",      
+        "text": "Label", 
+        "description": "Agregar un titulo",
+        "type": 0,
+        "icon": "fa-font",
+        "isRequired": null,
+        "idTable": null,
+        "nameSource": null,
+        "source": [],
+        "conditions": []
+        },
+        {
+        "id": 1595620240513,
+        "section": "Frutas",      
+        "text": "Label", 
+        "description": "Agregar un titulo",
+        "type": 0,
+        "icon": "fa-font",
+        "isRequired": null,
+        "idTable": null,
+        "nameSource": null,
+        "source": [],
+        "conditions": []
+        }
+    ]
+}
