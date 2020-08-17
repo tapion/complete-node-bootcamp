@@ -1,14 +1,65 @@
 // const fs = require('fs');
 // const { isNumber } = require('util');
 const Tour = require('../models/tourModel');
+// const { query } = require('express');
 
 // const tours = JSON.parse(
 //   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 // );
 
+exports.topCheap = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.fields = 'name,price,difficulty,summary';
+  req.query.sort = '-ratingAverage,price';
+  next();
+};
+
+
 exports.getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
+    // const queryObj = { ...req.query };
+    // const keysRemove = ['page', 'sort', 'limit', 'fields'];
+    // keysRemove.forEach((el) => delete queryObj[el]);
+    // let querySting = JSON.stringify(queryObj);
+    // querySting = querySting.replace(
+    //   /\b(gt|gte|lt|lte)\b/g,
+    //   (word) => `$${word}`
+    // );
+    // console.log(queryObj, req.query, JSON.parse(querySting));
+    // let query = Tour.find(JSON.parse(querySting));
+    // if (req.query.sort) {
+    //   query = query.sort(req.query.sort.split(',').join(' '));
+    // } else {
+    //   query = query.sort('-createAt');
+    // }
+
+    // if (req.query.fields) {
+    //   query = query.select(req.query.fields.split(',').join(' '));
+    // } else {
+    //   query = query.select('-__v');
+    // }
+
+    // const limit = req.query.limit * 1 || 100;
+    // const page = req.query.page * 1 || 1;
+    // const skip = (page - 1) * limit;
+
+    // query = query.skip(skip).limit(limit);
+
+    // if (req.query.page) {
+    //   const maxTours = await Tour.countDocuments();
+    //   if (skip >= maxTours) throw new Error('You exceed the number of tours');
+    // }
+    // const query = await Tour.find()
+    //   .where('duration')
+    //   .equals(req.query.duration)
+    //   .where('difficulty')
+    //   .equals(req.query.difficulty);
+    const apiFeatures = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .filterFields()
+      .sort()
+      .limit();
+    const tours = await apiFeatures.query;
     res.status('200').json({
       status: 'success',
       results: tours.length,
@@ -17,6 +68,7 @@ exports.getAllTours = async (req, res) => {
       },
     });
   } catch (err) {
+    console.log(err);
     res.status('404').json({
       status: 'fail',
       message: err,
