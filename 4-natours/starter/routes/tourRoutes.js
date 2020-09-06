@@ -10,6 +10,7 @@ router
   .get(toursController.topCheap, toursController.getAllTours);
 
 router.route('/tour-stats').get(toursController.getTourStats);
+router.route('/busy-month/:year').get(toursController.getBusyMonth);
 
 router
   .route('/')

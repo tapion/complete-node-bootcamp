@@ -129,7 +129,7 @@ paths:
         description: Create a form
         required: true
       responses:
-        '200':
+        '201':
           description: successful operation
           content:
             application/json:
@@ -142,7 +142,106 @@ paths:
                     $ref: '#/components/schemas/Forms'
         '401':
           $ref: '#/components/responses/Unauthorized'
-  /roles/{roleId}/permissions:
+  /forms/{formId}:
+    get:
+      tags: 
+       - Forms
+      summary: Form by id
+      description: Get an specific form 
+      operationId: FormById
+      parameters:
+        - name: formId
+          in: path
+          description: Form id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Forms'
+        '404':
+          $ref: '#/components/responses/Unauthorized'
+  /forms:
+    get:
+      tags: 
+       - Forms
+      summary: All forms
+      description: Get all forms 
+      operationId: FormGetAll
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: 
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        state:
+                          type: boolean
+        '404':
+          $ref: '#/components/responses/Unauthorized'
+  /forms/task-types/:
+    post:
+      tags: 
+       - Forms
+      summary: Asociate forms to type of task
+      description: Asociate forms to type of task
+      operationId: formsTypeTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taksId:
+                  type: integer
+                formId:
+                  type: integer
+                userId:
+                  type: integer
+              required:
+                - taskId
+                - formId
+                - userId
+        description: Create a form
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Forms'
+        '401':
+          $ref: '#/components/responses/Unauthorized'/roles/{roleId}/permissions:
     get:
       tags: 
        - Roles
@@ -869,6 +968,19 @@ components:
           type: integer
         name:
           type: string
+    Catalog:
+      type: object      
+      description: Generic data for all aplication
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        abbreviation:
+          type: string
+        catalog_id:
+          type: integer
+          description: Father's id, 0 for new father catalog
     Forms:
       type: object
       description: Information to show a form
