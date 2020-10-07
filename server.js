@@ -8,7 +8,7 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 const app = require('./app');
-
+//asd
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -21,8 +21,9 @@ mongoose
   });
 
 const port = process.env.PORT || 3000;
-
-// console.log(process.env);
+//osdasdasd
+// console.cess.env);
+//hola
 app.listen(port, () => {
   console.log(`Estamos ecuchandote desde el puerto ${port}`);
 });

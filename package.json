@@ -7,8 +7,9 @@
   "description": "Lerns Express",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
+    "start": "NODE_ENV=development nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "debug": "ndb server.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +22,16 @@
   },
   "homepage": "https://github.com/jonasschmedtmann/complete-node-bootcamp#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
     "morgan": "^1.10.0",
     "slugify": "^1.4.5",
-    "superagent": "^5.3.1"
+    "superagent": "^5.3.1",
+    "util": "^0.12.3",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
