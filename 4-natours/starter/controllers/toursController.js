@@ -99,10 +99,10 @@ exports.getBusyMonth = catchAsyncFunction(async (req, res, next) => {
 });
 
 exports.getTour = catchAsyncFunction(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.tourId, () => {
-    console.log('aqui?');
-    next(new AppError('Not found', 404));
-  });
+  const tour = await Tour.findById(req.params.tourId);
+  if (!tour) {
+    return next(new AppError('No tour found with that ID', 404));
+  }
   res.status('200').json({
     status: 'success',
     data: {

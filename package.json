@@ -23,6 +23,7 @@
   "homepage": "https://github.com/jonasschmedtmann/complete-node-bootcamp#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cognito-express": "^2.0.18",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

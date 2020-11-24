@@ -15,6 +15,11 @@ const sendProd = (err, res) => {
   }
 };
 
+const handlerDBCastId = (error) => {
+  console.log('ingreso aqui');
+  return new AppError(`Invalid ${error.path} value: ${error.value}`, 400);
+};
+
 const handlerJWTerror = () => new AppError('Invalid token', 401);
 
 const sendDev = (err, res) => {
@@ -30,10 +35,16 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
   if (process.env.NODE_ENV === 'development') {
+    console.log(err.name);
+    console.log(err);
     sendDev(err, res);
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
-    if (error.name === 'JsonWebTokenError') error = handlerJWTerror();
+    console.log('aqui entro????');
+    console.log(error);
+    console.log('aqui entro????', err);
+    if (err.name === 'CastError') error = handlerDBCastId(error);
+    if (err.name === 'JsonWebTokenError') error = handlerJWTerror();
     sendProd(error, res);
   }
 };
